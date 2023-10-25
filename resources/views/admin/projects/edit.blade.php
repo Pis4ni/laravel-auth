@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 @endsection
 @section('content')
@@ -12,7 +13,7 @@
     @include('partials._navbtn')
     @if ($errors->any())
     <div class="alert alert-danger bg-danger-subtle bg-gradient my-5">
-        <h4>Correggi i seguenti errori per proseguire:</h4>
+        <h4> <i class="fa-solid fa-triangle-exclamation fa-spin"></i> Correggi i seguenti errori per proseguire:</h4>
         <ul>
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
