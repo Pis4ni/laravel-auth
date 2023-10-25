@@ -4,12 +4,23 @@
 @endsection
 @section('content')
 <div class="container mt-5">
-
-    @include('partials._navbtn')
-    
     <h1 class="my-5">
         Edit Project: <span class="text-primary">{{$project->id}}</span> ( EX {{$project->title}} )
     </h1>
+    
+    <hr>    
+    @include('partials._navbtn')
+    @if ($errors->any())
+    <div class="alert alert-danger bg-danger-subtle bg-gradient my-5">
+        <h4>Correggi i seguenti errori per proseguire:</h4>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    <hr>    
     
     <form action="{{ route('admin.projects.update', $project) }}" method="post">
         

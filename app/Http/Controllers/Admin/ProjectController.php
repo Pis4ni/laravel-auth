@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
+
 
 class ProjectController extends Controller
 {
@@ -37,7 +39,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all(); 
+        $data =  $this->validation($request->all()); 
         $project = new Project;
         $project->fill($data);
         $project->slug = Str::slug($project->title);
@@ -77,7 +79,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        $data = $request->all();
+        $data =  $this->validation($request->all());
         $project->update($data);
         return redirect()->route('admin.projects.show', $project);
     }
@@ -92,5 +94,34 @@ class ProjectController extends Controller
     {
         $project->delete();
         return redirect()->route('admin.projects.index');
+    }
+
+    private function validation($data) 
+    {
+
+        $validator = Validator::make(
+            $data,
+            [
+                //   ... regole di validazione
+                'title' => 'required|string|max:20',
+                "description" => "required|string|min:50",
+            ],
+            [
+                //   ... messaggi di errore
+                // *titolo
+                'title.required' => 'Il titolo è obbligatorio',
+                'title.string' => 'Il titolo deve essere una stringa',
+                'title.max' => 'Il titolo deve massimo di 20 caratteri',
+
+                // *descrizione
+                'description.required' => 'La descrizione è obbligatoria',
+                'description.string' => 'La descrizione deve essere una stringa',
+                'description.min' => 'La descrizione deve essere lunga almeno 50 caratter',
+
+            ]
+          )->validate();
+
+          return $validator;
+
     }
 }
