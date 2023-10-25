@@ -8,7 +8,9 @@
     <h1 class="my-5">
         Create New Project
     </h1>
-    
+    <hr>
+    <a href="{{route('admin.projects.index')}}" class="btn btn-outline-primary me-3 py-0">Back to list</a>
+    <hr>
     <form action="{{ route('admin.projects.store') }}" method="post">
         
         @csrf

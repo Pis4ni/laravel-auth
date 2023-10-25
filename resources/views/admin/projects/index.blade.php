@@ -5,10 +5,15 @@
 @endsection
 @section('content')
     <div class="container mt-5">
+        {{-- @include('partials._navbtn') --}}
 
-        <a href="{{ route('admin.projects.create') }}" role="button" class="btn btn-primary">Add new project</a>
-
-        <table class="table table-striped">
+        <h1 class="my-5">
+            Projects List
+        </h1>
+        <hr>
+        <a href="{{ route('admin.projects.create') }}" class="btn btn-outline-success me-3 py-0">Add new project</a>
+        <hr>
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                   <th scope="col">ID</th>
@@ -34,7 +39,7 @@
                         <div class="h-100 d-flex align-items-center justify-content-between">
                             <a href="{{ route('admin.projects.show', $project)}}"><i class="fa-solid fa-eye text-"></i></a>
                             <a href="{{ route('admin.projects.edit', $project)}}"><i class="fa-solid fa-pencil text-warning"></i></a>
-                            <a href="#"data-bs-toggle="modal" data-bs-target="#modal-{{$project->id}}"><i class="fa-solid fa-trash text-danger"></i></i></a>
+                            <a href="#"data-bs-toggle="modal" data-bs-target="#modal-{{$project->id}}"><i class="fa-solid fa-trash text-danger"></i></a>
                         </div>
                     </td>
                   </tr>
@@ -83,9 +88,6 @@
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="send" class="btn btn-outline-danger"><strong>DELETE</strong></button>
                     </form>
-                </div>
-                <div class="modal-footer bg-danger">
-                    {{-- todo edit the button form --}}
                 </div>
               </div>
             </div>

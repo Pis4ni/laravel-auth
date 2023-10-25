@@ -5,6 +5,8 @@
 @section('content')
 <div class="container mt-5">
 
+    @include('partials._navbtn')
+    
     <h1 class="my-5">
         Edit Project: <span class="text-primary">{{$project->id}}</span> ( EX {{$project->title}} )
     </h1>
@@ -40,11 +42,39 @@
     
     </form>
 
+    <div class="modal fade" tabindex="-1" id="modal-{{$project->id}}">
+        <div class="modal-dialog ">
+          <div class="modal-content">
+            <div class="modal-header bg-danger">
+              <h5 class="modal-title">DELETE FROM DATABASE</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <strong class="text-danger text-align-center">W A R N I N G</strong> <br>
+                <hr>
+    
+                <p> Are you shure you want to delete permanently:
+                    <br>
+                    <strong>
+                        ' {{$project->title}} ' 
+                    </strong>
+                    <br>
+                    <strong>
+                        ID :
+                    </strong>
+                     {{$project->id}}
+                    <br>
+                     from the database?</p>
+                <p class="text-danger">THIS ACTION IS IRREVERIBLE</p>
+    
+                <hr>
+                
+                <form action="{{ route('admin.projects.destroy', $project) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="send" class="btn btn-outline-danger"><strong>DELETE</strong></button>
+                </form>
+            </div>
 </div>
 @endsection
-{{-- {{$project->title}}
-{{$project->slug}}
-{{$project->created_at}}
-{{$project->updated_at}}
-{{$project->slug}}
-{{$project->created_at}} --}}
