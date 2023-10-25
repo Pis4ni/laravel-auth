@@ -6,6 +6,8 @@
 @section('content')
     <div class="container mt-5">
 
+        <a href="{{ route('admin.projects.create') }}" role="button" class="btn btn-primary">Add new project</a>
+
         <table class="table table-striped">
             <thead>
                 <tr>
