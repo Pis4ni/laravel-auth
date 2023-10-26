@@ -38,7 +38,7 @@
 <div class="modal fade" tabindex="-1" id="modal-{{$project->id}}">
     <div class="modal-dialog ">
       <div class="modal-content">
-        <div class="modal-header bg-danger">
+        <div class="modal-header red-strip">
           <h5 class="modal-title">DELETE FROM DATABASE</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -68,5 +68,7 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="send" class="btn btn-outline-danger"><strong>DELETE</strong></button>
             </form>
+        </div>
+        <div class="modal-footer red-strip"">
         </div>
 @endsection
